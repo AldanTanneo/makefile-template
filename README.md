@@ -18,7 +18,7 @@ PROJECT_ROOT := src
 ```
 
 ### Location of the header files
-This folder will be added to the -I flag, making the headers discoverable through 
+This folder will be added to the `-I` flag, making the headers discoverable through 
 `#include <...>` instead of `#include "..."`. Using this is of course optional.
 
 ```Makefile
