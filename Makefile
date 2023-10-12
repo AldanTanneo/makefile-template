@@ -121,23 +121,23 @@ $(OBJ_DEBUG) $(OBJ_RELEASE):
 # Debug build
 
 $(OBJ_DEBUG)/%.o: $(SRC)/%.$(FILE_EXTENSION) | $(OBJ_DEBUG)
-	@echo $(BOLD)$(GREEN)  Compiling $(NC)$(notdir $@)$(GREEN) $(MODE_DEBUG)$(NC)
+	@echo "$(BOLD)$(GREEN)  Compiling $(NC)$(notdir $@)$(GREEN) $(MODE_DEBUG)$(NC)"
 	@$(CREATE_DIR)
 	@$(CC) -c $< -o $@ $(OPT_DEBUG) $(CFLAGS) 
 
 $(TARGET_DEBUG): $(OBJS_DEBUG) | $(OBJ_DEBUG)
-	@echo $(BOLD)$(GREEN)    Linking $(NC)$@$(GREEN) $(MODE_DEBUG)$(NC)
+	@echo "$(BOLD)$(GREEN)    Linking $(NC)$@$(GREEN) $(MODE_DEBUG)$(NC)"
 	@$(CC) -o $@ $(OBJS_DEBUG) $(OPT_DEBUG) $(CFLAGS)
 
 # Release build
 
 $(OBJ_RELEASE)/%.o: $(SRC)/%.$(FILE_EXTENSION) | $(OBJ_RELEASE)
-	@echo $(BOLD)$(GREEN)  Compiling $(NC)$(notdir $@)$(GREEN) $(MODE_RELEASE)$(NC)
+	@echo "$(BOLD)$(GREEN)  Compiling $(NC)$(notdir $@)$(GREEN) $(MODE_RELEASE)$(NC)"
 	@$(CREATE_DIR)
 	@$(CC) -c $< -o $@ $(OPT_RELEASE) $(CFLAGS)
 
 $(TARGET_RELEASE): $(OBJS_RELEASE) | $(OBJ_RELEASE)
-	@echo $(BOLD)$(GREEN)    Linking $(NC)$@$(GREEN) $(MODE_RELEASE)$(NC)
+	@echo "$(BOLD)$(GREEN)    Linking $(NC)$@$(GREEN) $(MODE_RELEASE)$(NC)"
 	@$(CC) $(OBJS_RELEASE) -o $@ $(OPT_RELEASE) $(CFLAGS)
 
 # Phony targets
@@ -145,26 +145,26 @@ $(TARGET_RELEASE): $(OBJS_RELEASE) | $(OBJ_RELEASE)
 debug: $(TARGET_DEBUG)
 
 run: $(TARGET_DEBUG)
-	@echo $(BOLD)$(GREEN)    Running $(NC)$(TARGET_DEBUG)$(GREEN) $(MODE_DEBUG)$(NC)
+	@echo "$(BOLD)$(GREEN)    Running $(NC)$(TARGET_DEBUG)$(GREEN) $(MODE_DEBUG)$(NC)"
 	@./$(TARGET_DEBUG)
 
 release: $(TARGET_RELEASE)
 
 bench benchmark: $(TARGET_RELEASE)
-	@echo $(BOLD)$(GREEN)    Running $(NC)$(TARGET_RELEASE)$(GREEN) $(MODE_RELEASE)$(NC)
+	@echo "$(BOLD)$(GREEN)    Running $(NC)$(TARGET_RELEASE)$(GREEN) $(MODE_RELEASE)$(NC)"
 	@./$(TARGET_RELEASE)
 
 clean:
 ifneq ("$(wildcard $(TARGET_DEBUG))","")
-	@echo $(BOLD)$(RED)Cleaning up $(NC)$(TARGET_DEBUG)$(RED)...$(NC)
+	@echo "$(BOLD)$(RED)Cleaning up $(NC)$(TARGET_DEBUG)$(RED)...$(NC)"
 	@$(DEL) $(TARGET_DEBUG)
 endif
 ifneq ("$(wildcard $(TARGET_RELEASE))","")
-	@echo $(BOLD)$(RED)Cleaning up $(NC)$(TARGET_RELEASE)$(RED)...$(NC)
+	@echo "$(BOLD)$(RED)Cleaning up $(NC)$(TARGET_RELEASE)$(RED)...$(NC)"
 	@$(DEL) $(TARGET_RELEASE)
 endif
 ifneq ("$(wildcard $(OBJ))","")
-	@echo $(BOLD)$(RED)Cleaning up $(NC)$(OBJ)$(RED)...$(NC)
+	@echo "$(BOLD)$(RED)Cleaning up $(NC)$(OBJ)$(RED)...$(NC)"
 	@$(RMDIR) $(OBJ)
 endif
 
